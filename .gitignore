@@ -485,3 +485,4 @@ $RECYCLE.BIN/
 *.json
 !global.json
 *.log
+.aider*
