@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:WordCliper.ViewModels"
+             x:Class="WordCliper.Views.MainView"
+             x:DataType="vm:MainViewModel"
+             FontFamily="Noto Sans CJK JP">
+
+    <StackPanel Margin="20" Spacing="10">
+        <!-- テキスト入力欄 -->
+        <TextBox Text="{Binding InputText}" PlaceholderText="ピン留めしたいテキストを入力..." />
+
+        <!-- 追加ボタン -->
+        <Button Command="{Binding AddPinnedWordCommand}" Content="ピン留め追加" />
+
+        <!-- ピン留め一覧リスト -->
+        <ListBox ItemsSource="{Binding PinnedItems}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+                        <Button Command="{Binding $parent[UserControl].((vm:MainViewModel)DataContext).RemovePinnedWordCommand}"
+                                CommandParameter="{Binding}"
+                                Content="削除" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+</UserControl>

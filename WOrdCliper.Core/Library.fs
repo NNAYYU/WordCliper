@@ -3,11 +3,11 @@ open System.IO
 open System.Text.Json
 //コピーしたものを保存しておく関数
 module Strage =
-     let save_word(filePath:string)(items:seq<string>)=
+     let save_word(filePath:string,items:seq<string>)=
           let options = JsonSerializerOptions(WriteIndented = true)
           let json = JsonSerializer.Serialize(items,options)
           File.WriteAllText(filePath,json)
-     let loa_word (filePath: string) : string[] =
+     let load_word (filePath: string) : string[] =
           if File.Exists(filePath) then
                try
                     let json =File.ReadAllText(filePath)
